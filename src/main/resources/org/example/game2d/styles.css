@@ -1,0 +1,9 @@
+#BackGround{
+    -fx-background-color: black;
+}
+
+.gameView{
+    -fx-background-image: url('maps/HBLLtG.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
