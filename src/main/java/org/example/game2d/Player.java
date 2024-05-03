@@ -12,7 +12,7 @@ public class Player extends Entity {
     public Player(AnchorPane gameView){
         x = 600;
         y = 600;
-        speed = 5;
+        speed = 10;
         maxAnimationInterval = 5;
         animationInterval = 0;
         getPlayerImage();
@@ -68,10 +68,22 @@ public class Player extends Entity {
         });
         gameView.setOnKeyReleased(keyEvent -> {
             switch (keyEvent.getCode()){
-                case W -> moveState = MoveState.UPSTAY;
-                case A -> moveState = MoveState.LEFTSTAY;
-                case S -> moveState = MoveState.DOWNSTAY;
-                case D -> moveState = MoveState.RIGHTSTAY;
+                case W -> {
+                    moveState = MoveState.UPSTAY;
+                    SocketClient.moveAsync(123, "W");
+                }
+                case A -> {
+                    moveState = MoveState.LEFTSTAY;
+                    SocketClient.moveAsync(123, "A");
+                }
+                case S -> {
+                    moveState = MoveState.DOWNSTAY;
+                    SocketClient.moveAsync(123, "S");
+                }
+                case D -> {
+                    moveState = MoveState.RIGHTSTAY;
+                    SocketClient.moveAsync(123, "D");
+                }
             }
             animationInterval = 0;
             updatePlayerPos();

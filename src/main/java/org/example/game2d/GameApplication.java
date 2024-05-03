@@ -17,8 +17,12 @@ public class GameApplication extends Application {
     static final int screenRow = 15;
     static final int screenWidth = finalTileSize * screenCol;
     static final int screenHeight = finalTileSize * screenRow;
+    public static SocketClient socketClient;
     @Override
     public void start(Stage stage) throws IOException {
+        socketClient = new SocketClient();
+        Thread thread = new Thread(socketClient);
+        thread.start();
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("mainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
